@@ -5,7 +5,7 @@
 #include <string>
 
 
-#define PATH_TO_PNG "./test.png"
+#define PATH_TO_PNG "../medias/test.png"
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 1024;

@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string>
 
-#define PATH_TO_PNG "./test.png"
+#define PATH_TO_PNG "../medias/test.png"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -24,6 +24,10 @@ int init()
 	if (ret < 0) {
 		printf("SDL_Init ERROR: %s\n", SDL_GetError());
 		return ret;
+	}
+
+	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
+		printf("Warning: Linear texture filtering not enabled!");
 	}
 
 	// create window
@@ -54,7 +58,6 @@ int init()
 	return 0;
 }
 
-
 SDL_Texture *load_texture(char *path)
 {
 	SDL_Texture *new_texture;
@@ -66,7 +69,7 @@ SDL_Texture *load_texture(char *path)
 		return NULL;
 	}
 
-	new_texture = SDL_CreateTextureFromSurface(renderer, surface);
+	new_texture = SDL_CreateTextureFromSurface(renderer, loaded_surface);
 	if (!new_texture) {
 		printf("Unable to create texture from %s! SDL Error: %s\n",
 		       path, SDL_GetError());
@@ -106,11 +109,10 @@ void leave()
 	SDL_Quit();
 }
 
-
 int main()
 {
-    int quit = 0;
-    SDL_Event e;
+	int quit = 0;
+	SDL_Event e;
 
 	init();
 	load_media();
