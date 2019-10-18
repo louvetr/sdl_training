@@ -14,8 +14,8 @@ enum KeyPressSurfaces {
 };
 
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 240;
+const int SCREEN_HEIGHT = 240;
 
 SDL_Window *window;
 SDL_Surface *screen_surface;
@@ -73,35 +73,35 @@ int load_media()
 
 	// default surface
 	key_press_surfaces[KEY_PRESS_SURFACE_DEFAULT] =
-		load_surface("press.bmp");
+		load_surface("../medias/press.bmp");
 	if (!key_press_surfaces[KEY_PRESS_SURFACE_DEFAULT]) {
 		printf("Failed to load default image!\n");
 		ret = -1;
 	}
 
 	// up surface
-	key_press_surfaces[KEY_PRESS_SURFACE_UP] = load_surface("up.bmp");
+	key_press_surfaces[KEY_PRESS_SURFACE_UP] = load_surface("../medias/up.bmp");
 	if (!key_press_surfaces[KEY_PRESS_SURFACE_UP]) {
 		printf("Failed to load up image!\n");
 		ret = -1;
 	}
 
 	// down surface
-	key_press_surfaces[KEY_PRESS_SURFACE_DOWN] = load_surface("down.bmp");
+	key_press_surfaces[KEY_PRESS_SURFACE_DOWN] = load_surface("../medias/down.bmp");
 	if (!key_press_surfaces[KEY_PRESS_SURFACE_DOWN]) {
 		printf("Failed to load down image!\n");
 		ret = -1;
 	}
 
 	// left surface
-	key_press_surfaces[KEY_PRESS_SURFACE_LEFT] = load_surface("left.bmp");
+	key_press_surfaces[KEY_PRESS_SURFACE_LEFT] = load_surface("../medias/left.bmp");
 	if (!key_press_surfaces[KEY_PRESS_SURFACE_LEFT]) {
 		printf("Failed to load left image!\n");
 		ret = -1;
 	}
 
 	// right surface
-	key_press_surfaces[KEY_PRESS_SURFACE_RIGHT] = load_surface("right.bmp");
+	key_press_surfaces[KEY_PRESS_SURFACE_RIGHT] = load_surface("../medias/right.bmp");
 	if (!key_press_surfaces[KEY_PRESS_SURFACE_RIGHT]) {
 		printf("Failed to load right image!\n");
 		ret = -1;

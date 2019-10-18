@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
-#define PATH_TO_BMP "./test.bmp"
+#define PATH_TO_BMP "../medias/test.bmp"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
