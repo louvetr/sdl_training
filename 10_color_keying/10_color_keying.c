@@ -191,9 +191,6 @@ int main()
 
 		//update screen
 		SDL_RenderPresent(renderer);
-
-		// update screen
-		SDL_RenderPresent(renderer);
 	}
 
 	leave();
