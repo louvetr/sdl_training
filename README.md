@@ -8,3 +8,4 @@ I replaced his picture files by my homemade ones.
 ### Required packet to install:
 - sudo apt install libsdl2-dev
 - sudo apt install libsdl2-image
+- sudo apt install libsdl2-ttf-dev
