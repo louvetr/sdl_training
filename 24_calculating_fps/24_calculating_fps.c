@@ -40,34 +40,6 @@ static void timer_start(struct l_timer *t)
 	t->paused_ticks = 0;
 }
 
-static void timer_stop(struct l_timer *t)
-{
-	t->started = 0;
-	t->paused = 0;
-	t->start_ticks = 0;
-	t->paused_ticks = 0;
-}
-
-static void timer_pause(struct l_timer *t)
-{
-	if (!t->started || t->paused)
-		return;
-
-	t->paused = 1;
-	t->paused_ticks = SDL_GetTicks() - t->start_ticks;
-	t->start_ticks = 0;
-}
-
-static void timer_unpause(struct l_timer *t)
-{
-	if (!t->started || !t->paused)
-		return;
-
-	t->paused = 0;
-	t->start_ticks = SDL_GetTicks() - t->paused_ticks;
-	t->paused_ticks = 0;
-}
-
 static Uint32 timer_get_ticks(struct l_timer *t)
 {
 	if (!t->started)
@@ -229,7 +201,6 @@ int main()
 	// current start time
 	char time_str[64] = { 0 };
 	// appli timer
-	struct l_timer timer = { 0 };
 	struct l_timer fps_timer = { 0 };
 	int counted_frames = 0;
 
@@ -247,20 +218,6 @@ int main()
 			    (e.type == SDL_KEYDOWN &&
 			     e.key.keysym.sym == SDLK_ESCAPE)) {
 				quit = 1;
-			}
-
-			if (e.type == SDL_KEYDOWN) {
-				if (e.key.keysym.sym == SDLK_s) {
-					if (timer.started)
-						timer_stop(&timer);
-					else
-						timer_start(&timer);
-				} else if (e.key.keysym.sym == SDLK_p) {
-					if (timer.started && timer.paused)
-						timer_unpause(&timer);
-					else
-						timer_pause(&timer);
-				}
 			}
 		}
 
