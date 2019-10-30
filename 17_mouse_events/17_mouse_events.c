@@ -5,7 +5,6 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
-//#include <cmath.h>
 
 //Screen dimension constants
 #define SCREEN_WIDTH 640

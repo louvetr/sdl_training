@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 #define PATH_TO_LION "../medias/lion_head.png"
-#define PATH_TO_BG "../medias/scrolling_bg.png"
+#define PATH_TO_BG "../medias/sliding_bg.png"
 #define LEVEL_WIDTH 1280
 #define LEVEL_HEIGHT 960
 #define SCREEN_WIDTH 640
@@ -241,7 +241,7 @@ static void leave()
 
 int main()
 {
-	int quit = 0;
+	int quit = 0, scrolling_offset = 0;
 	SDL_Event e;
 	struct l_moving_object mo = {
 		.pos_x = LEVEL_WIDTH / 2 - MOVING_OBJECT_WIDTH,
@@ -273,6 +273,11 @@ int main()
 		// move the moving object
 		mo_move(&mo);
 
+		// scroll background
+		scrolling_offset--;
+		if (scrolling_offset < -stage_texture.width)
+			scrolling_offset = 0;
+
 		// center camera on the moving object
 		camera.x =
 			mo.pos_x + MOVING_OBJECT_WIDTH / 2 - SCREEN_WIDTH / 2;
@@ -294,7 +299,8 @@ int main()
 		SDL_RenderClear(renderer);
 
 		//render backgrountd
-		render(&stage_texture, 0, 0, &camera);
+		render(&stage_texture, scrolling_offset, 0, NULL);
+		render(&stage_texture, scrolling_offset + stage_texture.width, 0, NULL);
 
 		//render character
 		if (camera.x + MOVING_OBJECT_WIDTH > SCREEN_WIDTH)
